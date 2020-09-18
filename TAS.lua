@@ -42,14 +42,26 @@ if not workspace:FindFirstChild("FolderTAS") then
 	Velocity1.Name = "Velocity"
 	Velocity1.Value = Vector3.new(0, 0, 0)
 	Velocity1.Parent = workspace.FolderTAS.Savestates
+	local Velocity2 = Instance.new("NumberValue")
+	Velocity2.Name = "Speed"
+	Velocity2.Value = 0
+	Velocity2.Parent = workspace.FolderTAS.Savestates
+	local Velocity3 = Instance.new("NumberValue")
+	Velocity3.Name = "JumpPower"
+	Velocity3.Value = 0
+	Velocity3.Parent = workspace.FolderTAS.Savestates
+	local Velocity4 = Instance.new("NumberValue")
+	Velocity4.Name = "Gravity"
+	Velocity4.Value = 0
+	Velocity4.Parent = workspace.FolderTAS.Savestates
 	local Framesss1 = Instance.new("NumberValue")
 	Framesss1.Name = "Frame"
 	Framesss1.Value = Vector3.new(0, 0, 0)
 	Framesss1.Parent = workspace.FolderTAS.Savestates
-	local Framesss1 = Instance.new("NumberValue")
-	Framesss1.Name = "CurrentFrame"
-	Framesss1.Value = Vector3.new(0, 0, 0)
-	Framesss1.Parent = workspace.FolderTAS
+	local Framesss2 = Instance.new("NumberValue")
+	Framesss2.Name = "CurrentFrame"
+	Framesss2.Value = Vector3.new(0, 0, 0)
+	Framesss2.Parent = workspace.FolderTAS
 	local Hotkey1 = Instance.new("StringValue")
 	Hotkey1.Name = "EndTAS"
 	Hotkey1.Value = "L"
@@ -203,7 +215,7 @@ UserInputService.InputBegan:connect(function(input)
 			for _,partName in pairs(BodyParts) do
 				Savestates[partName].Value = character[partName].CFrame
 			end
-			Savestates.Velocity.Value = character.Torso.Velocity
+			Savestates.Velocity.Value = character.HumanoidRootPart.Velocity
 			Savestates.Speed.Value = character.Humanoid.WalkSpeed
 			Savestates.JumpPower.Value = character.Humanoid.JumpPower
 			Savestates.Gravity.Value = workspace.Gravity
@@ -221,7 +233,7 @@ UserInputService.InputBegan:connect(function(input)
 				for _,partName in pairs(BodyParts) do
 					character[partName].CFrame = Savestates[partName].Value
 				end
-				character.Torso.Velocity = Savestates.Velocity.Value
+				character.HumanoidRootPart.Velocity = Savestates.Velocity.Value
 				character.Humanoid.WalkSpeed = Savestates.Speed.Value
 				character.Humanoid.JumpPower = Savestates.JumpPower.Value
 				workspace.Gravity = Savestates.Gravity.Value
@@ -335,6 +347,7 @@ playback = true
 
 local length = frame
 local sLength = seconds
+local framerjump = 0
 frame = 0
 seconds = 0
 if character:FindFirstChild("HumanoidRootPart") then character.HumanoidRootPart.Anchored = false end
@@ -342,7 +355,11 @@ local virtualUser = game:GetService('VirtualUser')
 virtualUser:CaptureController()
 while wait() do
 	frame = frame + 1
-			seconds = seconds + 1 / 30
+	seconds = seconds + 1 / 30
+	framerjump = frame
+	if framerjump >= 3 then
+		framerjump = frame - 2
+		end
 	local displayH = math.floor((seconds / 60) / 60)
 	if displayH < 10 then
 		displayH = "0" .. tostring(displayH)
@@ -380,9 +397,9 @@ while wait() do
 	if TAS[frame][7] == true and playback == true then
 		humanoider:Move(Vector3.new(-1, 0, 0), true)
 	end
-	if TAS[frame][8] and playback == true then
+	if TAS[framerjump][8] and playback == true then
 		virtualUser:SetKeyDown('0x20')
-		virtualUser:SetKeyUp('0x64')
+		virtualUser:SetKeyUp('0x20')
 			end
 	if TAS[frame][9] == true and playback == true then
 		local frameaditional = frame - 1
