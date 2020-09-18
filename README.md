@@ -18,37 +18,32 @@ You can also see this system in action [here](https://www.youtube.com/watch?v=Qv
 
 ## How do I use this system?
 Adding the system to a Roblox game is simple.
-First, go to the [Releases page](https://github.com/luigidasonic/RobloxTAS/releases) and download the RBXM files.
+First download the TAS.lua file from here and copy this.
 Next, open the game you want to TAS in Roblox Studio.
-In the "Explorer" tab, go to the StarterPlayer folder and insert the RBXM file for the TAS script into StarterPlayerScripts by right-clicking and selecting "Insert from File".
+Run the game then paste on command bar in Roblox Studio and press enter. **inserting TAS.lua on
 **If using the first version of this script, insert the RBXM file for the TASing script into StarterCharacterScripts.**
 
 Now you can begin TASing the game you chose.
 You can start the game by clicking the "Play" button in the top menu.
-**NOTE: This system only works with R6 characters and does not support R15 characters. You'll have to go to "Game Settings" and under the "Avatar" tab, set the Avatar Type to R6.**
+**NOTE: This system works both with R6 and R15 characters.**
 
 Once you start playing, you may notice that the game is in a "paused" state.
-If you press the backslash ( \ ) key, the game will advance by one frame.
-In order to unpause the game, press the F key.
-If you don't want the game to be slowed down, press the E key.
+If you press the Q key, the game will advance by one frame.
+If you press the T key, the game will backwards by one frame.
+In order to unpause the game, press the F key. **NOT RECOMMENDED**
+If you don't want the game to be slowed down, press the E key. **NOT RECOMMENDED**
 
-**NOTE: If you either unpause the game or disable slowdown while the game is paused, you'll have to press the frame advance key after doing so.**
+**NOTE: If you either unpause the game or disable slowdown while the game is paused, you'll have to press the frame advance key after doing so and it's not recommended.**
 
 If you want to use savestates, press the Y button to save the current state of the game and H to load the saved state.
 
 ## I'm done making my TAS! How do I play it back?
-Once you're done making your TAS, press the comma ( , ) key to play it back.
-**NOTE: If you're using frame advance, press the frame advance key while holding down the comma key. If using slowdown, keep pressing the comma key until it plays back.**
-
-## When playing back my TAS, the animations are sped up. Why does this happen and how can I fix it?
-This happens because when the game is being slowed down or paused, it's not actually slowed down or paused. What's actually happening is that your Roblox character's body parts are being anchored, in order to create the effect of the game being slowed down. However, Roblox animations still play even when a Roblox character's body parts are being anchored.
-
-However, I have made a modified version of Roblox's Animation script which pauses the animations when your character's body parts are anchored. You can download the RBXM file for that script and put it in StarterCharacterScripts.
+Once you're done making your TAS, press the L key to play it back.
+**NOTE: If you're using frame advance, press the frame advance key while holding down the L key then release it. If using slowdown, keep pressing the L key until it plays back.**
 
 ## I don't like the default hotkeys. Can I change them?
 Yes, it is possible to change your hotkeys.
-In order to do this, expand the TAS script in the "Explorer" tab, then expand the Settings folder. You should see a folder in there named Hotkeys. Expand that and you'll see all the hotkeys that the script uses.
-Select the one you want to change, then in the "Properties" tab, set the value to the key you want to use.
+In order to do this, modify on TAS.lua using text editor then change the value between "" of Hotkey(AnyNumber).Value = "".
 You'll need to set the value to the "key code" for the key you want.
 You can get it by either looking at [this page](https://developer.roblox.com/en-us/api-reference/enum/KeyCode) or by adding a new script into StarterCharacterScripts and adding this code into it:
 ```
@@ -58,5 +53,3 @@ end)
 ```
 After adding the script, start up the game and open up either [the output window](https://developer.roblox.com/en-us/articles/Debugging#output-window) or [the developer console](https://developer.roblox.com/en-us/articles/Developer-Console).
 Once the game is running and either the output or developer console is open, press the key you want and you'll see the key code there.
-
-**NOTE: There are lots of settings that you can change in the Settings folder, so feel free to change some.**
