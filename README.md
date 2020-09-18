@@ -20,7 +20,7 @@ You can also see this system in action [here](https://www.youtube.com/watch?v=Qv
 Adding the system to a Roblox game is simple.
 First download the TAS.lua file from here and copy this.
 Next, open the game you want to TAS in Roblox Studio.
-Run the game then paste on command bar in Roblox Studio and press enter. **inserting TAS.lua on
+Run the game then paste on command bar in Roblox Studio and press enter.
 **If using the first version of this script, insert the RBXM file for the TASing script into StarterCharacterScripts.**
 
 Now you can begin TASing the game you chose.
