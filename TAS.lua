@@ -312,6 +312,20 @@ repeat
 				character[partName].Anchored = true
 			end
 		end
+		for key, value in pairs(workspace:GetDescendants()) do
+                if value.ClassName == "Part" or value.ClassName == "MeshPart" then
+                  value.Anchored = true
+                end
+                if value.ClassName == "SpawnLocation" or value.ClassName == "Seat" then
+                  value.Anchored = true
+                end
+                if value.ClassName == "VehicleSeat" or  value.ClassName == "CornerWedgePart" then
+                  value.Anchored = true
+                end
+                if value.ClassName == "TrussPart" or value.ClassName == "WedgePart" then
+                  value.Anchored = true
+                end	
+                end
 		if FrameAdvance then
 			repeat wait() until UserInputService:IsKeyDown(Enum.KeyCode[FrameAdvanceHotkey])
 		else
@@ -322,6 +336,20 @@ repeat
 				character[partName].Anchored = false
 			end
 		end
+		for key, value in pairs(workspace:GetDescendants()) do
+                if value.ClassName == "Part" or value.ClassName == "MeshPart" then
+                  value.Anchored = false
+                end
+                if value.ClassName == "SpawnLocation" or value.ClassName == "Seat" then
+                  value.Anchored = false
+                end
+                if value.ClassName == "VehicleSeat" or  value.ClassName == "CornerWedgePart" then
+                  value.Anchored = false
+                end
+                if value.ClassName == "TrussPart" or value.ClassName == "WedgePart" then
+                  value.Anchored = false
+                end	
+                end
 		game.workspace.FolderTAS.Paused.Value = false
 	end
 	if character:FindFirstChild("HumanoidRootPart") then humanoidrootpartC = character.HumanoidRootPart end
