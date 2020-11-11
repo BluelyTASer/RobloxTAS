@@ -30,7 +30,7 @@ for key, value in pairs(workspace:GetDescendants()) do
                 end	
                 end
 
-for 1, 3 do
+for count = 1, 3 do
   for key, value in pairs(workspace:GetDescendants()) do
                 if value.ClassName == "Part" or value.ClassName == "MeshPart" then
 		  if value.Anchored == false then
