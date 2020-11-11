@@ -1,28 +1,28 @@
 print("Checking For Pernamently Attached Blocks... it should take couple of seconds depending of size of the game...")
 for key, value in pairs(workspace:GetDescendants()) do
                 if value.ClassName == "Part" or value.ClassName == "MeshPart" then
-		  if value.Anchored == true then:
+		  if value.Anchored == true then
                     local anchex = Instance.new("Folder")
 		    anchex.Name = value.Name .. "CheckerTAS"
 		    anchex.Parent = value.Parent
 	            end
                 end
                 if value.ClassName == "SpawnLocation" or value.ClassName == "Seat" then
-                  if value.Anchored == true then:
+                  if value.Anchored == true then
                     local anchex = Instance.new("Folder")
 		    anchex.Name = value.Name .. "CheckerTAS"
 		    anchex.Parent = value.Parent
 		    end
                 end
                 if value.ClassName == "VehicleSeat" or  value.ClassName == "CornerWedgePart" then
-                  if value.Anchored == true then:
+                  if value.Anchored == true then
                     local anchex = Instance.new("Folder")
 		    anchex.Name = value.Name .. "CheckerTAS"
 		    anchex.Parent = value.Parent
 		    end
                 end
                 if value.ClassName == "TrussPart" or value.ClassName == "WedgePart" then
-                  if value.Anchored == true then:
+                  if value.Anchored == true then
                     local anchex = Instance.new("Folder")
 		    anchex.Name = value.Name .. "CheckerTAS"
 		    anchex.Parent = value.Parent
@@ -33,25 +33,25 @@ for key, value in pairs(workspace:GetDescendants()) do
 for 1, 3 do
   for key, value in pairs(workspace:GetDescendants()) do
                 if value.ClassName == "Part" or value.ClassName == "MeshPart" then
-		  if value.Anchored == false then:
+		  if value.Anchored == false then
                     local Remover = value:FindFirstChild(value.Name .. "CheckerTAS")
 		    Remover:Destroy()
 	            end
                 end
                 if value.ClassName == "SpawnLocation" or value.ClassName == "Seat" then
-                  if value.Anchored == false then:
+                  if value.Anchored == false then
                     local Remover = value:FindFirstChild(value.Name .. "CheckerTAS")
 		    Remover:Destroy()
 		    end
                 end
                 if value.ClassName == "VehicleSeat" or  value.ClassName == "CornerWedgePart" then
-                  if value.Anchored == false then:
+                  if value.Anchored == false then
                     local Remover = value:FindFirstChild(value.Name .. "CheckerTAS")
 		    Remover:Destroy()
 		    end
                 end
                 if value.ClassName == "TrussPart" or value.ClassName == "WedgePart" then
-                  if value.Anchored == false then:
+                  if value.Anchored == false then
                     local Remover = value:FindFirstChild(value.Name .. "CheckerTAS")
 		    Remover:Destroy()
 		    end
