@@ -400,16 +400,16 @@ repeat
 			end
 		end
 		for key, value in pairs(workspace:GetDescendants()) do
-                if value.ClassName == "Part" or value.ClassName == "MeshPart" then
+                if value.ClassName == "Part" or value.ClassName == "MeshPart" and value:FindFirstChild(value.Name .. "CheckerTAS") then
                   value.Anchored = false
                 end
-                if value.ClassName == "SpawnLocation" or value.ClassName == "Seat" then
+                if value.ClassName == "SpawnLocation" or value.ClassName == "Seat" and value:FindFirstChild(value.Name .. "CheckerTAS") then
                   value.Anchored = false
                 end
-                if value.ClassName == "VehicleSeat" or  value.ClassName == "CornerWedgePart" then
+                if value.ClassName == "VehicleSeat" or  value.ClassName == "CornerWedgePart" and value:FindFirstChild(value.Name .. "CheckerTAS") then
                   value.Anchored = false
                 end
-                if value.ClassName == "TrussPart" or value.ClassName == "WedgePart" then
+                if value.ClassName == "TrussPart" or value.ClassName == "WedgePart" and value:FindFirstChild(value.Name .. "CheckerTAS") then
                   value.Anchored = false
                 end	
                 end
