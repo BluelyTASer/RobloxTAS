@@ -35,25 +35,33 @@ for count = 1, 3 do
                 if value.ClassName == "Part" or value.ClassName == "MeshPart" then
 		  if value.Anchored == false then
                     local Remover = value:FindFirstChild(value.Name .. "CheckerTAS")
-		    Remover:Destroy()
+		    if Remover then
+            Remover:Destroy()
+            end
 	            end
                 end
                 if value.ClassName == "SpawnLocation" or value.ClassName == "Seat" then
                   if value.Anchored == false then
                     local Remover = value:FindFirstChild(value.Name .. "CheckerTAS")
-		    Remover:Destroy()
-		    end
+		    if Remover then
+            Remover:Destroy()
+            end
+            end
                 end
                 if value.ClassName == "VehicleSeat" or  value.ClassName == "CornerWedgePart" then
                   if value.Anchored == false then
                     local Remover = value:FindFirstChild(value.Name .. "CheckerTAS")
-		    Remover:Destroy()
+		    if Remover then
+            Remover:Destroy()
+            end
 		    end
                 end
                 if value.ClassName == "TrussPart" or value.ClassName == "WedgePart" then
                   if value.Anchored == false then
                     local Remover = value:FindFirstChild(value.Name .. "CheckerTAS")
-		    Remover:Destroy()
+		    if Remover then
+            Remover:Destroy()
+            end
 		    end
                 end	
                 end
