@@ -1,3 +1,66 @@
+print("Checking For Pernamently Attached Blocks... it should take couple of seconds depending of size of the game...")
+for key, value in pairs(workspace:GetDescendants()) do
+                if value.ClassName == "Part" or value.ClassName == "MeshPart" then
+		  if value.Anchored = true then:
+                    local anchex = Instance.new("Folder")
+		    anchex.Name = value.Name .. "CheckerTAS"
+		    anchex.Parent = value.Parent
+	            end
+                end
+                if value.ClassName == "SpawnLocation" or value.ClassName == "Seat" then
+                  if value.Anchored = true then:
+                    local anchex = Instance.new("Folder")
+		    anchex.Name = value.Name .. "CheckerTAS"
+		    anchex.Parent = value.Parent
+		    end
+                end
+                if value.ClassName == "VehicleSeat" or  value.ClassName == "CornerWedgePart" then
+                  if value.Anchored = true then:
+                    local anchex = Instance.new("Folder")
+		    anchex.Name = value.Name .. "CheckerTAS"
+		    anchex.Parent = value.Parent
+		    end
+                end
+                if value.ClassName == "TrussPart" or value.ClassName == "WedgePart" then
+                  if value.Anchored = true then:
+                    local anchex = Instance.new("Folder")
+		    anchex.Name = value.Name .. "CheckerTAS"
+		    anchex.Parent = value.Parent
+		    end
+                end	
+                end
+
+for 1, 3 do
+  for key, value in pairs(workspace:GetDescendants()) do
+                if value.ClassName == "Part" or value.ClassName == "MeshPart" then
+		  if value.Anchored = false then:
+                    local Remover = value:FindFirstChild(value.Name .. "CheckerTAS")
+		    Remover:Destroy()
+	            end
+                end
+                if value.ClassName == "SpawnLocation" or value.ClassName == "Seat" then
+                  if value.Anchored = false then:
+                    local Remover = value:FindFirstChild(value.Name .. "CheckerTAS")
+		    Remover:Destroy()
+		    end
+                end
+                if value.ClassName == "VehicleSeat" or  value.ClassName == "CornerWedgePart" then
+                  if value.Anchored = false then:
+                    local Remover = value:FindFirstChild(value.Name .. "CheckerTAS")
+		    Remover:Destroy()
+		    end
+                end
+                if value.ClassName == "TrussPart" or value.ClassName == "WedgePart" then
+                  if value.Anchored = false then:
+                    local Remover = value:FindFirstChild(value.Name .. "CheckerTAS")
+		    Remover:Destroy()
+		    end
+                end	
+                end
+end
+
+print("Finished Checking!")
+
 if not workspace:FindFirstChild("FolderTAS") then
 	local Foldersz = Instance.new("Folder")
 	Foldersz.Name = "FolderTAS"
@@ -313,16 +376,16 @@ repeat
 			end
 		end
 		for key, value in pairs(workspace:GetDescendants()) do
-                if value.ClassName == "Part" or value.ClassName == "MeshPart" then
+                if value.ClassName == "Part" or value.ClassName == "MeshPart" and value:FindFirstChild(value.Name .. "CheckerTAS") then
                   value.Anchored = true
                 end
-                if value.ClassName == "SpawnLocation" or value.ClassName == "Seat" then
+                if value.ClassName == "SpawnLocation" or value.ClassName == "Seat" and value:FindFirstChild(value.Name .. "CheckerTAS") then
                   value.Anchored = true
                 end
-                if value.ClassName == "VehicleSeat" or  value.ClassName == "CornerWedgePart" then
+                if value.ClassName == "VehicleSeat" or  value.ClassName == "CornerWedgePart" and value:FindFirstChild(value.Name .. "CheckerTAS") then
                   value.Anchored = true
                 end
-                if value.ClassName == "TrussPart" or value.ClassName == "WedgePart" then
+                if value.ClassName == "TrussPart" or value.ClassName == "WedgePart" and value:FindFirstChild(value.Name .. "CheckerTAS") then
                   value.Anchored = true
                 end	
                 end
@@ -378,7 +441,7 @@ local sLength = seconds
 local framerjump = 0
 frame = 0
 seconds = 0
-if character:FindFirstChild("HumanoidRootPart") then character.HumanoidRootPart.Anchored = false end
+if character:FindFirstChild("HumanoidRootPart") then character.HumanoidRootPart.Anchored = true end
 local virtualUser = game:GetService('VirtualUser')
 virtualUser:CaptureController()
 while wait() do
@@ -413,31 +476,6 @@ while wait() do
 		sDisplayS = "0" .. tostring(sDisplayS)
 	end
 	GUI.TextLabel.Text = "Frame: " .. tostring(frame) .. " / " .. tostring(length) .. "\nTime: " .. displayH .. ":" .. displayM .. ":" .. displayS .. " / " .. sDisplayH .. ":" .. sDisplayM .. ":" .. sDisplayS .. "\nRerecords: " .. tostring(rerecords)
-	if TAS[frame][4] == true and playback == true then
-		humanoider:Move(Vector3.new(0, 0, -1), true)
-	end
-	if TAS[frame][5] == true and playback == true then
-		humanoider:Move(Vector3.new(0, 0, 1), true)
-	end
-	if TAS[frame][6] == true and playback == true then
-		humanoider:Move(Vector3.new(1, 0, 0), true)
-	end
-	if TAS[frame][7] == true and playback == true then
-		humanoider:Move(Vector3.new(-1, 0, 0), true)
-	end
-	if TAS[framerjump][8] and playback == true then
-		virtualUser:SetKeyDown('0x20')
-		virtualUser:SetKeyUp('0x20')
-			end
-	if TAS[frame][9] == true and playback == true then
-		local frameaditional = frame - 1
-		if frame >= 2 then
-		if TAS[frameaditional][9] == false then
-				virtualUser:SetKeyDown('0xA0')
-				virtualUser:SetKeyUp('0xA0')
-			end
-			end
-	end
 	if character:FindFirstChild("HumanoidRootPart") and TAS[frame][1] ~= nil then character.HumanoidRootPart.CFrame = TAS[frame][1] end
 	if character:FindFirstChild("HumanoidRootPart") and TAS[frame][1] ~= nil then workspace.CurrentCamera.CFrame = TAS[frame][3] end
 	if frame >= length then
