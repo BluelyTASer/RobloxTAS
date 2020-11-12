@@ -1,73 +1,28 @@
-print("Checking For Pernamently Attached Blocks... it should take couple of seconds depending of size of the game...")
-for key, value in pairs(workspace:GetDescendants()) do
-                if value.ClassName == "Part" or value.ClassName == "MeshPart" then
-		  if value.Anchored == true then
-                    local anchex = Instance.new("Folder")
-		    anchex.Name = value.Name .. "CheckerTAS"
-		    anchex.Parent = value.Parent
-	            end
-                end
-                if value.ClassName == "SpawnLocation" or value.ClassName == "Seat" then
-                  if value.Anchored == true then
-                    local anchex = Instance.new("Folder")
-		    anchex.Name = value.Name .. "CheckerTAS"
-		    anchex.Parent = value.Parent
-		    end
-                end
-                if value.ClassName == "VehicleSeat" or  value.ClassName == "CornerWedgePart" then
-                  if value.Anchored == true then
-                    local anchex = Instance.new("Folder")
-		    anchex.Name = value.Name .. "CheckerTAS"
-		    anchex.Parent = value.Parent
-		    end
-                end
-                if value.ClassName == "TrussPart" or value.ClassName == "WedgePart" then
-                  if value.Anchored == true then
-                    local anchex = Instance.new("Folder")
-		    anchex.Name = value.Name .. "CheckerTAS"
-		    anchex.Parent = value.Parent
-		    end
-                end	
-                end
-
-for count = 1, 3 do
-  for key, value in pairs(workspace:GetDescendants()) do
-                if value.ClassName == "Part" or value.ClassName == "MeshPart" then
-		  if value.Anchored == false then
-                    local Remover = value:FindFirstChild(value.Name .. "CheckerTAS")
-		    if Remover then
-            Remover:Destroy()
-            end
-	            end
-                end
-                if value.ClassName == "SpawnLocation" or value.ClassName == "Seat" then
-                  if value.Anchored == false then
-                    local Remover = value:FindFirstChild(value.Name .. "CheckerTAS")
-		    if Remover then
-            Remover:Destroy()
-            end
-            end
-                end
-                if value.ClassName == "VehicleSeat" or  value.ClassName == "CornerWedgePart" then
-                  if value.Anchored == false then
-                    local Remover = value:FindFirstChild(value.Name .. "CheckerTAS")
-		    if Remover then
-            Remover:Destroy()
-            end
-		    end
-                end
-                if value.ClassName == "TrussPart" or value.ClassName == "WedgePart" then
-                  if value.Anchored == false then
-                    local Remover = value:FindFirstChild(value.Name .. "CheckerTAS")
-		    if Remover then
-            Remover:Destroy()
-            end
-		    end
-                end	
-                end
+function compileTable(table)
+	local index = 1
+	local holder = "{"
+	while true do
+		if type(table[index]) == "function" then
+			index = index + 1
+		elseif type(table[index]) == "table" then
+			holder = holder..compileTable(table[index])
+		elseif type(table[index]) == "number" then
+			holder = holder..tostring(table[index])
+		elseif type(table[index]) == "string" then
+			holder = holder.."\""..table[index].."\""
+		elseif table[index] == nil then
+			holder = holder.."nil"
+		elseif type(table[index]) == "boolean" then
+			holder = (table[index] and "true" or "false")
+		end
+		if index + 1 > #table then
+			break
+		end
+		holder = holder..","
+		index = index + 1
+	end
+	return holder.."}"
 end
-
-print("Finished Checking!")
 
 if not workspace:FindFirstChild("FolderTAS") then
 	local Foldersz = Instance.new("Folder")
@@ -143,24 +98,48 @@ if not workspace:FindFirstChild("FolderTAS") then
 	Hotkey2.Parent = workspace.FolderTAS.Hotkeys
 	local Hotkey3 = Instance.new("StringValue")
 	Hotkey3.Name = "FrameAdvanceToggle"
-	Hotkey3.Value = "N"
+	Hotkey3.Value = "Slash"
 	Hotkey3.Parent = workspace.FolderTAS.Hotkeys
 	local Hotkey4 = Instance.new("StringValue")
 	Hotkey4.Name = "LoadState"
-	Hotkey4.Value = "H"
+	Hotkey4.Value = "BackSlash"
 	Hotkey4.Parent = workspace.FolderTAS.Hotkeys
 	local Hotkey5 = Instance.new("StringValue")
 	Hotkey5.Name = "SaveState"
-	Hotkey5.Value = "Y"
+	Hotkey5.Value = "Comma"
 	Hotkey5.Parent = workspace.FolderTAS.Hotkeys
 	local Hotkey6 = Instance.new("StringValue")
 	Hotkey6.Name = "SlowdownToggle"
-	Hotkey6.Value = "M"
+	Hotkey6.Value = "Period"
 	Hotkey6.Parent = workspace.FolderTAS.Hotkeys
 	local Hotkey7 = Instance.new("StringValue")
 	Hotkey7.Name = "FrameBackwards"
 	Hotkey7.Value = "T"
 	Hotkey7.Parent = workspace.FolderTAS.Hotkeys
+	local Hotkey8 = Instance.new("StringValue")
+	Hotkey8.Name = "GetTime"
+	Hotkey8.Value = "E"
+	Hotkey8.Parent = workspace.FolderTAS.Hotkeys
+	local Hotkey9 = Instance.new("StringValue")
+	Hotkey9.Name = "SaveTAS"
+	Hotkey9.Value = ""
+	Hotkey9.Parent = workspace.FolderTAS
+	local Hotkey10 = Instance.new("StringValue")
+	Hotkey10.Name = "FiveFrameAdvance"
+	Hotkey10.Value = "E"
+	Hotkey10.Parent = workspace.FolderTAS.Hotkeys
+	local Hotkey11 = Instance.new("StringValue")
+	Hotkey11.Name = "SaverTASer"
+	Hotkey11.Value = "G"
+	Hotkey11.Parent = workspace.FolderTAS.Hotkeys
+	local Hotkey10 = Instance.new("StringValue")
+	Hotkey10.Name = "TenFrameAdvance"
+	Hotkey10.Value = "F"
+	Hotkey10.Parent = workspace.FolderTAS.Hotkeys
+    local Hotkey10 = Instance.new("StringValue")
+	Hotkey10.Name = "SafeFrameAdvance"
+	Hotkey10.Value = "V"
+	Hotkey10.Parent = workspace.FolderTAS.Hotkeys
 	local ScreenGuidez = Instance.new("ScreenGui")
 	ScreenGuidez.Name = "ScreenGuidezTAS"
 	ScreenGuidez.Parent = workspace.FolderTAS
@@ -183,6 +162,7 @@ if not workspace:FindFirstChild("FolderTAS") then
 	TextFontsz.TextWrap = true
 	TextFontsz.Archivable = true
 end
+
 local UserInputService = game:GetService("UserInputService")
 local uis = game:GetService("UserInputService")
 local event = Instance.new("BindableEvent")
@@ -202,6 +182,17 @@ local KeyA = UserInputService:IsKeyDown(Enum.KeyCode.A)
 local KeyD = UserInputService:IsKeyDown(Enum.KeyCode.D)
 local KeySpace = UserInputService:IsKeyDown(Enum.KeyCode.Space)
 local KeyShift = UserInputService:IsKeyDown(Enum.KeyCode.LeftShift)
+function KeyUpdate()
+	KeyW = UserInputService:IsKeyDown(Enum.KeyCode.W)
+	KeyS = UserInputService:IsKeyDown(Enum.KeyCode.S)
+	KeyA = UserInputService:IsKeyDown(Enum.KeyCode.A)
+	KeyD = UserInputService:IsKeyDown(Enum.KeyCode.D)
+	KeySpace = UserInputService:IsKeyDown(Enum.KeyCode.Space)
+	KeyShift = UserInputService:IsKeyDown(Enum.KeyCode.LeftShift)
+end
+local started = 0
+local currenttime = 0
+local startingframe = 0
 repeat wait() until game:IsLoaded()
 
 local groundez = false
@@ -224,20 +215,38 @@ local SaveState = Hotkeys.SaveState.Value
 local LoadState = Hotkeys.LoadState.Value
 local EndTAS = Hotkeys.EndTAS.Value
 local FrameBackwards = Hotkeys.FrameBackwards.Value
+local GetTime = Hotkeys.GetTime.Value
+local FiveFrameAdvance = Hotkeys.FiveFrameAdvance.Value
+local SaverTASer = Hotkeys.SaverTASer.Value
+local TenFrameAdvance = Hotkeys.TenFrameAdvance.Value
+local SafeFrameAdvance = Hotkeys.SafeFrameAdvance.Value
 
 local FrameAdvance = Settings.FrameAdvanceEnabled.Value
 local SlowdownEnabled = Settings.SlowdownEnabled.Value
 
-local TAS = {}
+TAS = {}
+TAS1 = {}
+local lengthersr = tonumber(#TAS)
 -- TAS Data: 1. Head, 2. Torso, 3-4. Left Arm/Leg, 5-6. Right Arm/Leg, 7. Camera, 8. Velocity
 local playback = false
 
 local frame = 0
 local seconds = 0
+print("TAS Length: " .. lengthersr)
+if lengthersr >= 1 then
+	local frame = lengthersr
+	local seconds = lengthersr / 30
+	if character:FindFirstChild("HumanoidRootPart") and TAS[frame][1] ~= nil then character.HumanoidRootPart.CFrame = TAS[frame][1] end
+	if character:FindFirstChild("HumanoidRootPart") and TAS[frame][1] ~= nil then character.HumanoidRootPart.Velocity = TAS[frame][2] end
+        if character:FindFirstChild("HumanoidRootPart") and TAS[frame][1] ~= nil then workspace.CurrentCamera.CFrame = TAS[frame][3] end
+end
 local rerecords = 0
+local cell = false
 
 local plrahhh = game:GetService("Players").LocalPlayer
 local charmizard = plrahhh.Character or plrahhh.CharacterAdded:Wait()	
+local previousframe = 0
+local distancera = 0
 
 -- Add GUI
 local GUI = game.Workspace.FolderTAS.ScreenGuidezTAS:clone()
@@ -247,6 +256,10 @@ player.CharacterAdded:connect(function(char)
 	GUI = game.Workspace.FolderTAS.ScreenGuidezTAS:clone()
 	GUI.Parent = player.PlayerGui
 	IsLocalPlayerDead = 0
+	started = 0
+	if playback == true then
+		GUI.Enabled = false
+	end
 end)
 game.Players.LocalPlayer.CharacterAdded:Connect(function(character)
 	character:WaitForChild("Humanoid").Died:Connect(function()
@@ -260,25 +273,29 @@ charmizard:WaitForChild("Humanoid").Died:Connect(function()
 end)
 game.Players.LocalPlayer.CharacterRemoving:Connect(function(player11)
 	IsLocalPlayerDead = 1
+    cell = false
 	repeat wait() until IsLocalPlayerDead == 0
 end)
+
+local PositionOne = 0
+local PositionTwo = 0
 
 -- Savestates
 UserInputService.InputBegan:connect(function(input)
 	if not playback then
-		if input.KeyCode == Enum.KeyCode[FrameAdvanceToggle] then
+		if input.KeyCode == Enum.KeyCode[FrameAdvanceToggle] and input.KeyCode == Enum.KeyCode.LeftShift then
 			FrameAdvance = not FrameAdvance
 			if FrameAdvance then
 				print("Frame advance enabled.")
 			else
-				print("Frame advance disabled.")
+				print("Frame advance disabled but we recommend to enable it.")
 			end
-		elseif input.KeyCode == Enum.KeyCode[SlowdownToggle] then
+		elseif input.KeyCode == Enum.KeyCode[SlowdownToggle] and input.KeyCode == Enum.KeyCode.LeftShift then
 			SlowdownEnabled = not SlowdownEnabled
 			if SlowdownEnabled then
 				print("Slowdown enabled.")
 			else
-				print("Slowdown disabled.")
+				print("Slowdown disabled but we recommend to enable it.")
 			end
 		elseif input.KeyCode == Enum.KeyCode[SaveState] then
 			if not savestate.Value then savestate.Value = true end
@@ -292,7 +309,7 @@ UserInputService.InputBegan:connect(function(input)
 			Savestates.Gravity.Value = workspace.Gravity
 			Savestates.Frame.Value = frame
 			Savestates.Seconds.Value = seconds
-			print("Saved state.")
+			print("Saved state but saving state is not efficient as framebackwards.")
 		elseif input.KeyCode == Enum.KeyCode[LoadState] then
 			if savestate.Value then
 				frame = Savestates.Frame.Value
@@ -313,16 +330,16 @@ UserInputService.InputBegan:connect(function(input)
 			else
 				print("Cannot load state.")
 			end
-	elseif input.KeyCode == Enum.KeyCode[FrameBackwards] then
-		if frame == 1 then
-			print("This is the first frame.")
-		else
-			if character:FindFirstChild("HumanoidRootPart") then
-			frame = frame - 1
-				seconds = seconds - 1 / 30
-				if character:FindFirstChild("HumanoidRootPart") and TAS[frame][1] ~= nil then character.HumanoidRootPart.CFrame = TAS[frame][1] end
-				if character:FindFirstChild("HumanoidRootPart") and TAS[frame][1] ~= nil then character.HumanoidRootPart.Velocity = TAS[frame][2] end
-			workspace.CurrentCamera.CFrame = TAS[frame][3]
+		elseif input.KeyCode == Enum.KeyCode[FrameBackwards] then
+			if frame == 1 then
+				print("This is the first frame.")
+			else
+				if character:FindFirstChild("HumanoidRootPart") then
+					frame = frame - 1
+					seconds = seconds - 1 / 30
+					if character:FindFirstChild("HumanoidRootPart") and TAS[frame][1] ~= nil then character.HumanoidRootPart.CFrame = TAS[frame][1] end
+					if character:FindFirstChild("HumanoidRootPart") and TAS[frame][1] ~= nil then character.HumanoidRootPart.Velocity = TAS[frame][2] end
+					workspace.CurrentCamera.CFrame = TAS[frame][3]
 					game.Workspace.FolderTAS.CurrentFrame.Value = frame
 					local displayH = math.floor((seconds / 60) / 60)
 					if displayH < 10 then
@@ -337,16 +354,49 @@ UserInputService.InputBegan:connect(function(input)
 						displayS = "0" .. tostring(displayS)
 					end
 					GUI.TextLabel.Text = "Frame: " .. tostring(frame) .. "\nTime: " .. displayH .. ":" .. displayM .. ":" .. displayS .. "\nRerecords: " .. tostring(rerecords)
-			for x = game.Workspace.FolderTAS.CurrentFrame.Value,#TAS,1 do
-					table.remove(TAS,x)
+
+					for x = game.Workspace.FolderTAS.CurrentFrame.Value,#TAS,1 do
+						table.remove(TAS,x)
+					end
+					for x = game.Workspace.FolderTAS.CurrentFrame.Value,#TAS1,1 do
+						table.remove(TAS1,x)
+					end
+					UpdateComparison()
+				else
+					print("The Character Must Not Be Dead Before Frame Backwarding")
 				end
-			else
-				print("The Character Must Not Be Dead Before Frame Backwarding")
-				end
-				end
+			end
+		elseif input.KeyCode == Enum.KeyCode[GetTime] then
+			currenttime = seconds - started
+                        previousframe = frame - 1
+                        PositionOne = character.HumanoidRootPart.CFrame.p
+                        PositionTwo = TAS[previousframe][1]
+                        distancera = (PositionTwo.p - PositionOne).magnitude
+			print("Current Time:" .. currenttime)
+                        print("Distance From Previous Frame:" .. distancera)
+		elseif input.KeyCode == Enum.KeyCode[FiveFrameAdvance] then
+			cell = true
+			startingframe = frame + 5
+			repeat wait() until frame >= startingframe
+			cell = false
+		elseif input.KeyCode == Enum.KeyCode[TenFrameAdvance] then
+			cell = true
+			startingframe = frame + 10
+			repeat wait() until frame >= startingframe
+			cell = false
+		elseif input.KeyCode == Enum.KeyCode[SaverTASer] then
+			local valuersr = compileTable(TAS1)
+			writefile("SavedTAS.txt", valuersr)
+        elseif input.KeyCode == Enum.KeyCode[SafeFrameAdvance] then
+			repeat wait() until not UserInputService:IsKeyDown(Enum.KeyCode[SafeFrameAdvance])
+            if cell == false then
+            cell = true
+            else
+			cell = false
+            end
 		end
 	end
-	end)
+end)
 	
 local plrahhh = game:GetService("Players").LocalPlayer
 	local charmizard = plrahhh.Character or plrahhh.CharacterAdded:Wait()	
@@ -355,6 +405,10 @@ local plrahhh = game:GetService("Players").LocalPlayer
 
 print("Roblox TAS System starting.. WalkAnimation playback worked for me but it might not work when it playback")
 repeat
+	if started == 0 and game.Workspace.BluelyTASer.Humanoid.WalkSpeed == 90 then
+		started = seconds
+		print(seconds)
+	end
 	wait()
 	-- CFrame variables
 	local humanoidrootpartC = nil
@@ -383,22 +437,11 @@ repeat
 				character[partName].Anchored = true
 			end
 		end
-		for key, value in pairs(workspace:GetDescendants()) do
-                if value.ClassName == "Part" or value.ClassName == "MeshPart" and value:FindFirstChild(value.Name .. "CheckerTAS") then
-                  value.Anchored = true
-                end
-                if value.ClassName == "SpawnLocation" or value.ClassName == "Seat" and value:FindFirstChild(value.Name .. "CheckerTAS") then
-                  value.Anchored = true
-                end
-                if value.ClassName == "VehicleSeat" or  value.ClassName == "CornerWedgePart" and value:FindFirstChild(value.Name .. "CheckerTAS") then
-                  value.Anchored = true
-                end
-                if value.ClassName == "TrussPart" or value.ClassName == "WedgePart" and value:FindFirstChild(value.Name .. "CheckerTAS") then
-                  value.Anchored = true
-                end	
-                end
 		if FrameAdvance then
-			repeat wait() until UserInputService:IsKeyDown(Enum.KeyCode[FrameAdvanceHotkey])
+			if cell == false then
+				repeat wait() until UserInputService:IsKeyDown(Enum.KeyCode[FrameAdvanceHotkey]) or cell == true
+				repeat wait() until not UserInputService:IsKeyDown(Enum.KeyCode[FrameAdvanceHotkey]) or cell == true
+			end
 		else
 			wait(Settings.Wait.Value)
 		end
@@ -407,24 +450,12 @@ repeat
 				character[partName].Anchored = false
 			end
 		end
-		for key, value in pairs(workspace:GetDescendants()) do
-                if value.ClassName == "Part" or value.ClassName == "MeshPart" and value:FindFirstChild(value.Name .. "CheckerTAS") then
-                  value.Anchored = false
-                end
-                if value.ClassName == "SpawnLocation" or value.ClassName == "Seat" and value:FindFirstChild(value.Name .. "CheckerTAS") then
-                  value.Anchored = false
-                end
-                if value.ClassName == "VehicleSeat" or  value.ClassName == "CornerWedgePart" and value:FindFirstChild(value.Name .. "CheckerTAS") then
-                  value.Anchored = false
-                end
-                if value.ClassName == "TrussPart" or value.ClassName == "WedgePart" and value:FindFirstChild(value.Name .. "CheckerTAS") then
-                  value.Anchored = false
-                end	
-                end
 		game.workspace.FolderTAS.Paused.Value = false
 	end
 	if character:FindFirstChild("HumanoidRootPart") then humanoidrootpartC = character.HumanoidRootPart end
+	KeyUpdate()
 	table.insert(TAS, frame, {humanoidrootpartC.CFrame, humanoidrootpartC.Velocity,  workspace.CurrentCamera.CFrame, KeyW, KeyS, KeyA, KeyD, KeySpace, KeyShift})
+	table.insert(TAS1, frame, {tostring(humanoidrootpartC.CFrame), tostring(humanoidrootpartC.Velocity),  tostring(workspace.CurrentCamera.CFrame), tostring(KeyW), tostring(KeyS), tostring(KeyA), tostring(KeyD), tostring(KeySpace), tostring(KeyShift)})
 until UserInputService:IsKeyDown(Enum.KeyCode[EndTAS])
 
 local Checkerszr = Instance.new("StringValue")
@@ -491,3 +522,4 @@ while wait() do
 		seconds = 0
 		end
 	end
+
